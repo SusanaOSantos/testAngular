@@ -1,0 +1,17 @@
+<h2 class="section-heading">Add a new claim</h2>
+<form [formGroup]="claimsForm" (submit)="submitClaim()">
+    <label for="name">Claimer Full Name</label>
+    <input id="name" type="text"  [formControl]="claimsForm.controls.name">
+
+    <label for="email">Email</label>
+    <input id="email" type="email" [formControl]="claimsForm.controls.email">
+
+    <label for="reason">Reason for dismissal</label>
+    <select name="reason" id="reason" [formControl]="claimsForm.controls.reason"> 
+        <option *ngFor="let item of dismissalReasonsList" [value]="item">
+        {{ item }}
+      </option>
+    </select>
+
+    <button type="submit" class="primary" [disabled]="!claimsForm.valid">Submit claim</button>
+</form>
