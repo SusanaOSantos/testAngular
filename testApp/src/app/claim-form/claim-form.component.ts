@@ -10,6 +10,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './claim-form.component.scss',
 })
 export class ClaimFormComponent {
+  
   claimsForm = new FormGroup({
     name: new FormControl('', [
       Validators.required, 
@@ -23,6 +24,7 @@ export class ClaimFormComponent {
     ]),
     reason: new FormControl('', [Validators.required]),
   });
+  
   dismissalReasonsList = ['Untimely dismissal', 'Discrimimation', 'Violate medical or family leave', 'Breach of contract'];
 
   submitClaim() {

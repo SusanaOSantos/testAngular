@@ -14,6 +14,16 @@ export class ClaimListComponent {
   claimsList: Claim[] = [];
 
   constructor(private claimService: ClaimService) {
+    this.getsClaimsList();
+  }
+
+  deleteClaim(claimId: string) {
+    this.claimService.removeUserById(claimId).subscribe(() => {
+      this.getsClaimsList();
+    });
+  }
+
+  getsClaimsList() {
     this.claimService.getClaims().then((claims: Claim[]) => {
       this.claimsList = claims;
     });
