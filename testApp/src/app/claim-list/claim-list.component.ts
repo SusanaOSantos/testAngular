@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Claim } from '../models/claim.model';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'claim-list',
@@ -10,18 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './claim-list.component.scss',
 })
 export class ClaimListComponent {
-  claimsList: Claim[] = [
-    {
-      id: '123',
-      claimerName: 'Marco Romero',
-      email: 'mar.romero@mail.com',
-      dismissalReason: 'Untimely dismissal',
-    },
-    {
-      id: '145',
-      claimerName: 'Mariana Romero',
-      email: 'marianita.romero@mail.com',
-      dismissalReason: 'Breach of contract',
-    },
-  ];
+  claimsList: Claim[] = [];
+
+  constructor(private userService: UserService) {
+    this.userService.getUsers().then((claims: Claim[]) => {
+      this.claimsList = claims;
+    });
+  }
 }

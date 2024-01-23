@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1234,
+      "claimerName": "Andrew Owen",
+      "email": "Andrew.Owen@foobar.com",
+      "dismissalReason": "Untimely dismissal"
+    },
+    {
+      "id": 1235,
+      "claimerName": "Susan Que",
+      "email": "Susan.Que@foobar.com",
+      "dismissalReason": "Breach of contract"
+    },
+    {
+      "id": 1236,
+      "claimerName": "John Doe",
+      "email": "John.Doe@foobar.com",
+      "dismissalReason": "Untimely dismissal"
+    }
+  ]
+}

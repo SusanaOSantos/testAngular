@@ -8,7 +8,7 @@ import { ClaimListComponent } from './claim-list/claim-list.component';
   standalone: true,
   imports: [RouterOutlet, ClaimFormComponent, ClaimListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'testApp';
