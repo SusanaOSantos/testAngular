@@ -5,17 +5,17 @@ import { Claim } from './models/claim.model';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  url = 'http://localhost:3000/users';
+export class ClaimService {
+  url = 'http://localhost:3000/claims';
 
   constructor(private http: HttpClient) {}
 
-  async getUsers(): Promise<Claim[]> {
+  async getClaims(): Promise<Claim[]> {
     const data = await fetch(this.url);
     console.log('here');
     return (await data.json()) ?? [];
   }
-  async getUserById(id: number): Promise<Claim | undefined> {
+  async getClaimById(id: number): Promise<Claim | undefined> {
     const data = await fetch(`${this.url}/${id}`);
     return (await data.json()) ?? {};
   }

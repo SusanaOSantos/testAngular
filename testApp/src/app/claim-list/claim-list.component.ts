@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Claim } from '../models/claim.model';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../user.service';
+import { ClaimService } from '../claim.service';
 
 @Component({
   selector: 'claim-list',
@@ -13,8 +13,8 @@ import { UserService } from '../user.service';
 export class ClaimListComponent {
   claimsList: Claim[] = [];
 
-  constructor(private userService: UserService) {
-    this.userService.getUsers().then((claims: Claim[]) => {
+  constructor(private claimService: ClaimService) {
+    this.claimService.getClaims().then((claims: Claim[]) => {
       this.claimsList = claims;
     });
   }
