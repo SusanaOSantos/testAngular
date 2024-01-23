@@ -19,7 +19,7 @@ export class ClaimFormComponent {
     email: new FormControl('', [
       Validators.required,
       Validators.maxLength(100),
-      Validators.email,
+      Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/),
     ]),
     reason: new FormControl('', [Validators.required]),
   });

@@ -1,17 +1,25 @@
-<h2 class="section-heading">Add a new claim</h2>
-<form [formGroup]="claimsForm" (submit)="submitClaim()">
-    <label for="name">Claimer Full Name</label>
-    <input id="name" type="text"  [formControl]="claimsForm.controls.name">
+<div class="row ps-5 pe-3">
+    <h3 class="section pt-5">Add a new claim</h3>
+    <form [formGroup]="claimsForm" (submit)="submitClaim()">
+        <div class="col my-3">
+            <label for="name" class="form-label">Claimer Full Name</label>
+            <input id="name" type="text" class="form-control" [formControl]="claimsForm.controls.name">
+        </div>
 
-    <label for="email">Email</label>
-    <input id="email" type="email" [formControl]="claimsForm.controls.email">
+        <div class="col my-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" class="form-control" [formControl]="claimsForm.controls.email">
+        </div>
 
-    <label for="reason">Reason for dismissal</label>
-    <select name="reason" id="reason" [formControl]="claimsForm.controls.reason"> 
-        <option *ngFor="let item of dismissalReasonsList" [value]="item">
-        {{ item }}
-      </option>
-    </select>
+        <div class="col my-3">
+            <label for="reason" class="form-label">Dismissal reason</label>
+            <select name="reason" id="reason"class="form-select" [formControl]="claimsForm.controls.reason"> 
+                <option *ngFor="let item of dismissalReasonsList" [value]="item">
+                {{ item }}
+            </option>
+            </select>
+        </div>
 
-    <button type="submit" class="primary" [disabled]="!claimsForm.valid">Submit claim</button>
-</form>
+        <button type="submit" class="btn btn-primary" [disabled]="!claimsForm.valid">Submit claim</button>
+    </form>
+</div>
