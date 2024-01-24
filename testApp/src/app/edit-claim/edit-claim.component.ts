@@ -13,30 +13,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './edit-claim.component.scss',
 })
 export class EditClaimComponent {
-  claim: Claim = {
-    id: '',
-    claimerName: '',
-    dismissalReason: '',
-    email: ''
-  };
+  claim: any;
 
-  editClaim(formData: any) {
-    console.log('Edit Form Submitted:', formData);
-  }
+  constructor(
+    private claimService: ClaimService,
+    public route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const claimId = params['id'];
-      this.getClaimById(claimId)
-      console.log('claim iss', this.claim)
+      this.getClaimById(claimId);
     });
   }
 
-  constructor(private claimService: ClaimService, public route: ActivatedRoute) { }
+  getClaimById(claimId: string) {
+    this.claimService.getClaimById(claimId).subscribe((claim) => {
+      this.claim = claim;
+    });
+  }
 
-  getClaimById(claimId: string){
-    this.claimService
-       .getClaimById(claimId)
-       .subscribe((claim) => (this.claim = claim));
+  editClaim(formData: any) {
+    this.claimService.editClaim(formData).subscribe();
   }
 }

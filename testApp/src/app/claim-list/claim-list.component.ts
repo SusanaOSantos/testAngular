@@ -21,6 +21,7 @@ export class ClaimListComponent {
   ) {
     this.getsClaimsList();
   }
+  
 
   deleteClaim(claimId: string) {
     this.claimService.removeUserById(claimId).subscribe(() => {
@@ -36,10 +37,6 @@ export class ClaimListComponent {
 
   editClaim(claimId: string) {
     console.log('claimId on click edit', claimId);
-    this.router.navigate(['../edit', claimId], {
-      relativeTo: this.route.parent,
-      queryParams: { id: claimId },
-      queryParamsHandling: 'preserve',
-    });
+    this.router.navigate(['/edit', claimId]);
   }
 }

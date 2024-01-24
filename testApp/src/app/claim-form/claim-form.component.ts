@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
-import { Claim } from '../models/claim.model';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'claim-form',
@@ -14,17 +13,24 @@ import { Claim } from '../models/claim.model';
 export class ClaimFormComponent {
   @Input() title: string = '';
   @Input() isCreate: boolean = true;
-  @Input() claim: Claim = {
-    id: '',
-    claimerName: '',
-    dismissalReason: '',
-    email: ''
-  };
+  @Input() claim: any;
 
   @Output() formSubmit = new EventEmitter<any>();
-  claimsForm: FormGroup;
+  claimsForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  dismissalReasonsList = [
+    'Untimely dismissal',
+    'Discrimimation',
+    'Violate medical or family leave',
+    'Breach of contract',
+  ];
+
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit() {
+    if (!this.isCreate){
+      console.log('claim on form  edit component', this.claim);
+    }
     this.claimsForm = this.fb.group({
       name: new FormControl(this.claim?.claimerName ?? '', [
         Validators.required,
@@ -43,19 +49,15 @@ export class ClaimFormComponent {
     });
   }
 
-  dismissalReasonsList = [
-    'Untimely dismissal',
-    'Discrimimation',
-    'Violate medical or family leave',
-    'Breach of contract',
-  ];
-
   onSubmit() {
     this.formSubmit.emit({
       id: this.claim?.id ?? '',
-      claimerName: this.claimsForm.value.name,
-      email: this.claimsForm.value.email,
-      dismissalReason: this.claimsForm.value.reason,
+      claimerName: this.claimsForm?.value.name,
+      email: this.claimsForm?.value.email,
+      dismissalReason: this.claimsForm?.value.reason,
     });
+    if(!this.isCreate){
+      this.router.navigate(['/'])
+    }
   }
 }

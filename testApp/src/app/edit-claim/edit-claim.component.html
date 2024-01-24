@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="claim">
     <claim-form (formSubmit)="editClaim($event)"
     [isCreate]="false"
     [title]="'Edit your claim'"
