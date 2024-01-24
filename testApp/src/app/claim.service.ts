@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Claim } from './models/claim.model';
-import { Observable, Subject, map } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +39,8 @@ export class ClaimService {
       claimerName: claim.claimerName,
       email: claim.email,
       dismissalReason: claim.dismissalReason,
-    });
+    }).pipe(tap(() =>
+       {this.databaseSubject.next(true)}
+    ));
   }
 }

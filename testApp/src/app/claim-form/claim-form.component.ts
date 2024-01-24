@@ -28,9 +28,6 @@ export class ClaimFormComponent {
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    if (!this.isCreate){
-      console.log('claim on form  edit component', this.claim);
-    }
     this.claimsForm = this.fb.group({
       name: new FormControl(this.claim?.claimerName ?? '', [
         Validators.required,

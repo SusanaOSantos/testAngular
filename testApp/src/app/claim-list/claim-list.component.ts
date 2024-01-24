@@ -20,8 +20,11 @@ export class ClaimListComponent {
     public route: ActivatedRoute
   ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.getsClaimsList();
+    this.claimService.databaseSubject.pipe().subscribe(() => {
+      this.getsClaimsList();
+    });
   }
 
   deleteClaim(claimId: string) {
