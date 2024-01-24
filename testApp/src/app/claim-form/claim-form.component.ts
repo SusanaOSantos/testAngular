@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Claim } from '../models/claim.model';
 
 @Component({
   selector: 'claim-form',
@@ -10,26 +12,50 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './claim-form.component.scss',
 })
 export class ClaimFormComponent {
-  
-  claimsForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required, 
-      Validators.minLength(5), 
-      Validators.maxLength(100), 
-      Validators.pattern(/^[a-zA-Z\s]*$/)]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(100),
-      Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/),
-    ]),
-    reason: new FormControl('', [Validators.required]),
-  });
-  
-  dismissalReasonsList = ['Untimely dismissal', 'Discrimimation', 'Violate medical or family leave', 'Breach of contract'];
+  @Input() title: string = '';
+  @Input() isCreate: boolean = true;
+  @Input() claim: Claim = {
+    id: '',
+    claimerName: '',
+    dismissalReason: '',
+    email: ''
+  };
 
-  submitClaim() {
-    console.log('name:', this.claimsForm.value.name ?? '');
-    console.log('email:', this.claimsForm.value.email ?? '');
-    console.log('reason:', this.claimsForm.value.reason ?? '');
+  @Output() formSubmit = new EventEmitter<any>();
+  claimsForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.claimsForm = this.fb.group({
+      name: new FormControl(this.claim?.claimerName ?? '', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(100),
+        Validators.pattern(/^[a-zA-Z\s]*$/),
+      ]),
+      email: new FormControl(this.claim?.email ?? '', [
+        Validators.required,
+        Validators.maxLength(100),
+        Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/),
+      ]),
+      reason: new FormControl(this.claim?.dismissalReason ?? '', [
+        Validators.required,
+      ]),
+    });
+  }
+
+  dismissalReasonsList = [
+    'Untimely dismissal',
+    'Discrimimation',
+    'Violate medical or family leave',
+    'Breach of contract',
+  ];
+
+  onSubmit() {
+    this.formSubmit.emit({
+      id: this.claim?.id ?? '',
+      claimerName: this.claimsForm.value.name,
+      email: this.claimsForm.value.email,
+      dismissalReason: this.claimsForm.value.reason,
+    });
   }
 }

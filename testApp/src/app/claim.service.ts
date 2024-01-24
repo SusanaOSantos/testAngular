@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Claim } from './models/claim.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +15,11 @@ export class ClaimService {
     const data = await fetch(this.url);
     return (await data.json()) ?? [];
   }
-  async getClaimById(id: string): Promise<Claim | undefined> {
-    const data = await fetch(`${this.url}/${id}`);
-    return (await data.json()) ?? {};
+  
+  getClaimById(id: string): Observable<any> {
+    return this.http.get(`${this.url}/${id}`).pipe(
+      map(data => data as Claim)
+    )
   }
 
   removeUserById(id: string): Observable<any> {
