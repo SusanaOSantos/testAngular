@@ -24,7 +24,7 @@ export class ClaimListComponent {
   
 
   deleteClaim(claimId: string) {
-    this.claimService.removeUserById(claimId).subscribe(() => {
+    this.claimService.removeClaimById(claimId).subscribe(() => {
       this.getsClaimsList();
     });
   }

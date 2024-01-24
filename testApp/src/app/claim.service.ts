@@ -16,19 +16,26 @@ export class ClaimService {
     const data = await fetch(this.url);
     return (await data.json()) ?? [];
   }
-  
+
   getClaimById(id: string): Observable<any> {
     return this.http
       .get(`${this.url}/${id}`)
       .pipe(map((data) => data as Claim));
   }
 
-  removeUserById(id: string): Observable<any> {
+  removeClaimById(id: string): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);
   }
 
   editClaim(claim: Claim) {
     return this.http.patch(`${this.url}/${claim.id}`, {
+      claimerName: claim.claimerName,
+      email: claim.email,
+      dismissalReason: claim.dismissalReason,
+    });
+  }
+  createClaim(claim: Claim) {
+    return this.http.post(`${this.url}`, {
       claimerName: claim.claimerName,
       email: claim.email,
       dismissalReason: claim.dismissalReason,

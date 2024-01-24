@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ClaimFormComponent } from '../claim-form/claim-form.component';
+import { ClaimService } from '../claim.service';
 
 @Component({
   selector: 'create-claim',
@@ -10,8 +11,9 @@ import { ClaimFormComponent } from '../claim-form/claim-form.component';
   styleUrl: './create-claim.component.scss',
 })
 export class CreateClaimComponent {
+  constructor(private claimService: ClaimService) {}
 
   submitClaim(formData: any) {
-    console.log('Create Form Submitted:', formData);
+    this.claimService.createClaim(formData).subscribe();
   }
 }
