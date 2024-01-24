@@ -12,9 +12,8 @@ export class ClaimService {
 
   constructor(private http: HttpClient) {}
 
-  async getClaims(): Promise<Claim[]> {
-    const data = await fetch(this.url);
-    return (await data.json()) ?? [];
+  getClaims(): Observable<any> {
+    return this.http.get(this.url).pipe(map((data) => data as Claim));
   }
 
   getClaimById(id: string): Observable<any> {
@@ -28,6 +27,7 @@ export class ClaimService {
   }
 
   editClaim(claim: Claim) {
+    this.databaseSubject.next(true);
     return this.http.patch(`${this.url}/${claim.id}`, {
       claimerName: claim.claimerName,
       email: claim.email,

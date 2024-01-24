@@ -57,7 +57,7 @@ export class ClaimFormComponent {
       dismissalReason: this.claimsForm?.value.reason,
     });
     if(!this.isCreate){
-      this.router.navigate(['/'])
+      this.router.navigate([''])
     }
   }
 }

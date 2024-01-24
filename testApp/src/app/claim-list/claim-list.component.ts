@@ -18,10 +18,11 @@ export class ClaimListComponent {
     private claimService: ClaimService,
     public router: Router,
     public route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit(){
     this.getsClaimsList();
   }
-  
 
   deleteClaim(claimId: string) {
     this.claimService.removeClaimById(claimId).subscribe(() => {
@@ -30,13 +31,12 @@ export class ClaimListComponent {
   }
 
   getsClaimsList() {
-    this.claimService.getClaims().then((claims: Claim[]) => {
+    this.claimService.getClaims().subscribe((claims: Claim[]) => {
       this.claimsList = claims;
     });
   }
 
   editClaim(claimId: string) {
-    console.log('claimId on click edit', claimId);
     this.router.navigate(['/edit', claimId]);
   }
 }
