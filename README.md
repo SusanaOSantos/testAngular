@@ -30,6 +30,6 @@ Demo project to manage claims using Angular Framework.
 
 - Run the json-server
   
-`json-server --watch db.json`
+`npm run backend`
 
 - Enjoy :3 
