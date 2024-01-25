@@ -1,5 +1,5 @@
-# Demo project
-Demo project to manage claims. 
+# Description
+Demo project to manage claims using Angular Framework.
 
 ## Installation
 
