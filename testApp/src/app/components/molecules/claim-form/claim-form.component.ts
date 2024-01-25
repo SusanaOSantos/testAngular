@@ -57,4 +57,10 @@ export class ClaimFormComponent {
       this.router.navigate([''])
     }
   }
+
+  goBack() {
+     if (!this.isCreate) {
+       this.router.navigate(['']);
+     }
+  }
 }

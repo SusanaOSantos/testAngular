@@ -12,17 +12,9 @@ Demo project to manage claims using Angular Framework.
 `npm install -g json-server`
 
 ## Run the project
-- Navigate to /testAngular
-  
-`cd /testAngular`
+- Navigate to /testApp
 
-- Run the json-server
-  
-`json-server --watch db.json`
-
-- In another terminal navigate to /testAngular
-  
-`cd /testAngular`
+`cd /testApp`
 
 - Install the dependencies
 
@@ -31,5 +23,13 @@ Demo project to manage claims using Angular Framework.
 - Run the angular server
   
 `ng serve`
+
+- In another terminal navigate to /testApp
+    
+`cd /testApp`
+
+- Run the json-server
+  
+`json-server --watch db.json`
 
 - Enjoy :3 
