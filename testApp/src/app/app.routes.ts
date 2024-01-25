@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ManageClaimsComponent } from './manage-claims/manage-claims.component';
-import { EditClaimComponent } from './edit-claim/edit-claim.component';
+import { ManageClaimsComponent } from './components/features/manage-claims/manage-claims.component';
+import { EditClaimComponent } from './components/features/edit-claim/edit-claim.component';
 
 export const routes: Routes = [
   {
@@ -12,8 +12,8 @@ export const routes: Routes = [
       },
       {
         path: 'edit/:id',
-       component: EditClaimComponent,
-      }
+        component: EditClaimComponent,
+      },
     ],
   },
 ];

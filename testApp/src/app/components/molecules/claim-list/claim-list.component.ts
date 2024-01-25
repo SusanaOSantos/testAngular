@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Claim } from '../models/claim.model';
+import { Claim } from '../../../models/claim.model';
 import { CommonModule } from '@angular/common';
-import { ClaimService } from '../claim.service';
+import { ClaimService } from '../../../services/claim.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

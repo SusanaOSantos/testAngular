@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Claim } from './models/claim.model';
+import { Claim } from '../models/claim.model';
 import { Observable, Subject, map, tap } from 'rxjs';
 
 @Injectable({
@@ -35,12 +35,16 @@ export class ClaimService {
     });
   }
   createClaim(claim: Claim) {
-    return this.http.post(`${this.url}`, {
-      claimerName: claim.claimerName,
-      email: claim.email,
-      dismissalReason: claim.dismissalReason,
-    }).pipe(tap(() =>
-       {this.databaseSubject.next(true)}
-    ));
+    return this.http
+      .post(`${this.url}`, {
+        claimerName: claim.claimerName,
+        email: claim.email,
+        dismissalReason: claim.dismissalReason,
+      })
+      .pipe(
+        tap(() => {
+          this.databaseSubject.next(true);
+        })
+      );
   }
 }

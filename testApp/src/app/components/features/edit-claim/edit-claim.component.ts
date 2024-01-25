@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ClaimFormComponent } from '../claim-form/claim-form.component';
-import { Claim } from '../models/claim.model';
-import { ClaimService } from '../claim.service';
+import { ClaimFormComponent } from '../../molecules/claim-form/claim-form.component';
+import { Claim } from '../../../models/claim.model';
+import { ClaimService } from '../../../services/claim.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
