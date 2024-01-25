@@ -24,6 +24,10 @@ Demo project to manage claims using Angular Framework.
   
 `cd /testAngular`
 
+- Install the dependencies
+
+`npm i`
+
 - Run the angular server
   
 `ng serve`
